@@ -17,3 +17,7 @@ class Conversation:
 
     def get_lines(self):
         return self.lines
+
+    def set_character(self, old_val, new_val):
+        self.character_set.remove(old_val)
+        self.character_set.add(new_val)

@@ -27,12 +27,12 @@ class Bechdel:
     def second(self):
         passed_test_two = False
         passed_test_three = False
-        for conversation in self.__movie.get_conversations:
+        for conversation in self.__movie.get_conversations():
             if self.get_gender_in_conversation(conversation):
                 passed_test_two = True
                 if self.test_three(conversation):
                     passed_test_three = True
-        return False
+        return passed_test_two, passed_test_three
 
     """ test three: the women in the conversation talk about something
     beside a man"""
@@ -47,7 +47,7 @@ class Bechdel:
     """
     def get_gender_in_conversation(self, conversation):
         number_of_women = 0
-        for character in conversation.get_characters:
+        for character in conversation.get_characters():
             if character.get_gender() == "f":
                 number_of_women+=1
             if number_of_women == 2:
@@ -55,14 +55,40 @@ class Bechdel:
         return False
 
 
-character1 = Character.Character("1", "BIANCA", "m11", "f")
-character2 = Character.Character("1", "CHASTITY ", "m11", "f")
+character1 = Character.Character(1,"CAMERON", "10 things", "m")
+character2 = Character.Character(2,"MICHAEL", "10 things", "m")
+characters_1 = set()
+characters_1.add(character1)
+characters_1.add(character2)
+text = "That girl -- I -- You burn, you pine, you perish? Who is she? Bianca Stratford.  Sophomore. Don't even think about it "
+con1 = conversation.Conversation("7",characters_1, text)
 
-my_set = (character1, character2)
-scene = conversation.Conversation("m11", my_set, "Did you change your hair? No. You "
-                                      "might "
-                                   "wanna think about it ")
-movie = Movie.Movie("m11", "air force one", [scene], my_set, "action")
+character3 = Character.Character(3,"BIANCA", "10 things", "f")
+character4 = Character.Character(4,"KAT", "10 things", "f")
+characters_2 = set()
+characters_2.add(character3)
+characters_2.add(character4)
 
-bechdel = Bechdel(movie)
-print(bechdel.second())
+text2 = "Can you turn down the Screaming Menstrual Bitches?  I'm trying to " \
+        "becoming normal? It means that Gigglepuss is playing at Club Skunk and" \
+        " we're going. Oh, I thought you might have a date.I don't know why" \
+        " I'm bothering to ask, but are you going to Bogey Lowenstein's " \
+        "party Saturday night? What do you think? I think you're'a ' \
+        'freak.  I think you do this to torture me.  And I think you suck. "
+con2 = conversation.Conversation("7",characters_2, text2)
+movie_characters = set()
+movie_characters.add(character1)
+movie_characters.add(character2)
+movie_characters.add(character3)
+movie_characters.add(character4)
+
+
+movie = Movie.Movie(1, "try movie",[con1, con2], movie_characters,"comedy")
+
+test = Bechdel(movie)
+print(test.second())
+
+
+
+
+
