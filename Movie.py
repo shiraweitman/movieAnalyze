@@ -1,8 +1,8 @@
 class Movie:
 
     def __init__(self, ID, name, scenes, characters, genres):
-        self.__movieID = ID
+        self.movieID = ID
         self.__movieName = name
-        self.__conversation = scenes
-        self.__characters = characters
+        self.conversation = scenes
+        self.characters = characters
         self.__genres = genres

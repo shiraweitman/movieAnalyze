@@ -1,7 +1,10 @@
 class Scene:
 
-    def __init__(self, movie, character1, character2, lines):
+    def __init__(self, movie, character_set, lines):
         self.movie = movie
-        self.character1 = character1
-        self.character2 = character2
+        self.character = character_set
         self.lines = lines
+
+    def set_character(self, old_val, new_val):
+        self.character.remove(old_val)
+        self.character.add(new_val)
