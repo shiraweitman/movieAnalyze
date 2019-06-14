@@ -1,5 +1,5 @@
 
-import Scene
+import conversation
 import Character
 import Movie
 
@@ -40,8 +40,8 @@ class CreateData:
         scenes_list = []
         self.split_list(self.movie_conversation, conversation_data)
         for conversation in conversation_data:
-            scene = Scene.Scene(conversation[2], conversation[0],
-                                conversation[1], conversation[3])
+            scene = conversation.Scene(conversation[2], conversation[0],
+                                       conversation[1], conversation[3])
             scenes_list.append(scene)
         return scenes_list
 
