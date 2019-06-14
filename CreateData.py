@@ -1,4 +1,5 @@
-import Bechdel
+
+import Scene
 import Character
 import Movie
 import conversation
@@ -104,6 +105,20 @@ movie_data = []
 conversation_data = []
 character_data = []
 
+character = Character.Character("u161", "GENERAL NORTHWOOD", "m11", "?")
+character2 = Character.Character("u159", "GENERAL NORTHWOOD", "m11", "m")
+my_set = set()
+my_set.add("u161")
+my_set.add("u159")
+movie_set = set()
+movie_set.add(character)
+movie_set.add(character2)
+scene = Scene.Scene("m11", my_set, ['L16842', 'L16843', 'L16844'])
+movie = Movie.Movie("m11", "air force one", [scene], movie_set, "action")
 
+data.create_character_obj(movie)
+for conv in movie.conversation:
+    for finals in conv.character:
+        print(finals.gender)
 
 

@@ -1,20 +1,20 @@
 class Movie:
 
-    def __init__(self, ID, name, conversations, characters, genres):
-        self.__movieID = ID
-        self.__movieName = name
-        self.__conversation = conversations
-        self.__characters = characters
-        self.__genres = genres
+    def __init__(self, ID, name, scenes, characters, genres):
+        self.movieID = ID
+        self.movieName = name
+        self.conversation = scenes
+        self.characters = characters
+        self.genres = genres
 
     def set_conversations(self, conversations):
-        self.__conversation = conversations
+        self.conversation = conversations
 
     def set_characters(self, characters):
-        self.__characters = characters
+        self.characters = characters
 
     def get_characters(self):
-        return self.__characters
+        return self.characters
 
     def get_conversations(self):
-        return self.__conversation
+        return self.conversation
