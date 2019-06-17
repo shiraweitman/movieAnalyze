@@ -7,6 +7,8 @@ class Conversation:
         self.movie = movie
         self.character_set = character_set
         self.male_characters = set()
+        self.female_characters = set()
+
         self.text = text
         self.lines = lines # one string with all lines
 
@@ -23,6 +25,10 @@ class Conversation:
     def set_character(self, old_val, new_val):
         self.character_set.remove(old_val)
         self.character_set.add(new_val)
+        if new_val.gender == "m":
+            self.male_characters.add(new_val)
+        elif new_val.gender == "f":
+            self.female_characters.add(new_val)
 
     def get_lines_text(self):
         conversation_text = ""

@@ -112,6 +112,7 @@ class CreateData:
                         if movie_char.ID == conv_char:
                             conv.set_character(conv_char, movie_char)
 
+
             for character in conv.character_set:
                 if character.get_gender() == "m":
                     conv.male_characters.add(character)
