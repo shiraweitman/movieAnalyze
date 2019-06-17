@@ -9,9 +9,7 @@ class Conversation:
         self.male_characters = set()
         self.text = text
         self.lines = lines # one string with all lines
-        for character in self.character_set:
-            if character.get_gender() == "m":
-                self.male_characters.add(character)
+
 
     def get_characters(self):
         return self.character_set

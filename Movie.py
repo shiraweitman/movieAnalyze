@@ -1,11 +1,13 @@
 class Movie:
 
-    def __init__(self, ID, name, scenes, characters, genres):
+    def __init__(self, ID, name, scenes, characters, genres, year):
         self.movieID = ID
-        self.movieName = name
+        self.movie_name = name
         self.conversation = scenes
         self.characters = characters
         self.genres = genres
+        self.year = year
+
 
     def set_conversations(self, conversations):
         self.conversation = conversations
