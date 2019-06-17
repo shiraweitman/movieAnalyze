@@ -18,6 +18,12 @@ class Bechdel:
         self.test3 = False
         self.overall = False
 
+        self.men1 = False
+        self.men2 = False
+        self.men3 = False
+        self.overall_men = False
+
+
 
     def run_bechdel_test(self):
         self.first()
@@ -84,39 +90,44 @@ class Bechdel:
                 return True
         return False
 
-
-character1 = Character.Character(1,"CAMERON", "10 things", "m")
-character2 = Character.Character(2,"MICHAEL", "10 things", "m")
-characters_1 = set()
-characters_1.add(character1)
-characters_1.add(character2)
-text = "That girl -- I -- You burn, you pine, you perish? Who is she? Bianca Stratford.  Sophomore. Don't even think about it "
-con1 = conversation.Conversation("7",characters_1, text)
-
-character3 = Character.Character(3,"BIANCA", "10 things", "f")
-character4 = Character.Character(4,"KAT", "10 things", "f")
-characters_2 = set()
-characters_2.add(character3)
-characters_2.add(character4)
-
-text2 = "Can you turn down the Screaming Menstrual Bitches?  I'm trying to " \
-        "becoming normal? It means that Gigglepuss is playing at Club Skunk and" \
-        " we're going. Oh, I thought you might have a date.I don't know why" \
-        " I'm bothering to ask, but are you going to Bogey Lowenstein's " \
-        "party Saturday night? What do you think? I think you're'a ' \
-        'freak.  I think you do this to torture me.  And I think you suck. "
-con2 = conversation.Conversation("7",characters_2, text2)
-movie_characters = set()
-movie_characters.add(character1)
-movie_characters.add(character2)
-movie_characters.add(character3)
-movie_characters.add(character4)
+    def bechdel_men(self):
+        if(self.__movie.get_characters)
 
 
-movie = Movie.Movie(1, "try movie", [con1, con2], movie_characters, "comedy")
 
-test = Bechdel(movie)
-test.run_bechdel_test()
+
+# character1 = Character.Character(1,"CAMERON", "10 things", "m")
+# character2 = Character.Character(2,"MICHAEL", "10 things", "m")
+# characters_1 = set()
+# characters_1.add(character1)
+# characters_1.add(character2)
+# text = "That girl -- I -- You burn, you pine, you perish? Who is she? Bianca Stratford.  Sophomore. Don't even think about it "
+# con1 = conversation.Conversation("7",characters_1, text)
+#
+# character3 = Character.Character(3,"BIANCA", "10 things", "f")
+# character4 = Character.Character(4,"KAT", "10 things", "f")
+# characters_2 = set()
+# characters_2.add(character3)
+# characters_2.add(character4)
+#
+# text2 = "Can you turn down the Screaming Menstrual Bitches?  I'm trying to " \
+#         "becoming normal? It means that Gigglepuss is playing at Club Skunk and" \
+#         " we're going. Oh, I thought you might have a date.I don't know why" \
+#         " I'm bothering to ask, but are you going to Bogey Lowenstein's " \
+#         "party Saturday night? What do you think? I think you're'a ' \
+#         'freak.  I think you do this to torture me.  And I think you suck. "
+# con2 = conversation.Conversation("7",characters_2, text2)
+# movie_characters = set()
+# movie_characters.add(character1)
+# movie_characters.add(character2)
+# movie_characters.add(character3)
+# movie_characters.add(character4)
+#
+#
+# movie = Movie.Movie(1, "try movie", [con1, con2], movie_characters, "comedy")
+#
+# test = Bechdel(movie)
+# test.run_bechdel_test()
 
 
 
