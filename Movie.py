@@ -8,6 +8,9 @@ class Movie:
         self.genres = genres
         self.year = year
 
+        self.male_char = set()
+        self.female_char = set()
+
 
     def set_conversations(self, conversations):
         self.conversation = conversations
@@ -20,3 +23,10 @@ class Movie:
 
     def get_conversations(self):
         return self.conversation
+
+    def set_character_genders(self):
+        for character in self.characters:
+            if character.get_gender()== "f":
+                self.female_char.add(character)
+            if character.get_gender() == "g":
+                self.male_char.add(character)
