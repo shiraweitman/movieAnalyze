@@ -10,6 +10,7 @@ class Movie:
 
         self.male_char = set()
         self.female_char = set()
+        self.conversation_num = len(self.conversation)
 
 
     def set_conversations(self, conversations):
