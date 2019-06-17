@@ -7,9 +7,39 @@ import conversation
 class Bechdel:
 
     male_references = ["him", "his", "he"]
+    NOT_PASSED = False
+    PASSED = True
+
 
     def __init__(self, movie):
         self.__movie = movie
+        self.test1 = False
+        self.test2 = False
+        self.test3 = False
+        self.overall = False
+
+
+    def run_bechdel_test(self):
+        self.first()
+        self.second()
+        print(self.__movie.movie_name)
+        print(self.test1 + " bechdel test 1")
+        print(self.test2 + " bechdel test 2")
+        print(self.test3 + " bechdel test 3")
+        over_all = 0
+        if(self.test1 == Bechdel.PASSED):
+            over_all+=1
+        if(self.test2 == Bechdel.PASSED):
+            over_all+=1
+        if(self.test2 == Bechdel.PASSED):
+            over_all+=1
+        if over_all ==3:
+            self.overall = Bechdel.PASSED
+            print(self.__movie.movie_name+ " passed bechdel test")
+        else: print(self.__movie.movie_name+ " did not pass bechdel test")
+
+
+
 
     """ return true if passed test 1 (movie has at least two women in it """
     def first(self):
@@ -18,27 +48,27 @@ class Bechdel:
             if character.get_gender() == "f":
                 number_of_women+=1
             if number_of_women == 2:
-                return True
-        return False
+                self.test1 = Bechdel.PASSED
+                return
+        return
 
     """ test two: at least two women talk to each other
      returns a specific conversation if found, False if didnt fins
      conversation"""
     def second(self):
-        passed_test_two = False
-        passed_test_three = False
         for conversation in self.__movie.get_conversations():
             if self.get_gender_in_conversation(conversation):
-                passed_test_two = True
+                self.test2 = Bechdel.PASSED
                 if self.test_three(conversation):
-                    passed_test_three = True
-        return passed_test_two, passed_test_three
+                    self.test3 = Bechdel.PASSED
+                    return
+        return
 
     """ test three: the women in the conversation talk about something
     beside a man"""
     def test_three(self, conversation):
         male_characters = conversation.get_male_characters()
-        for word in conversation.get_lines().split():
+        for word in conversation.txt.split():
             if word in Bechdel.male_references or word in male_characters:
                 return False
         return True
@@ -83,10 +113,10 @@ movie_characters.add(character3)
 movie_characters.add(character4)
 
 
-movie = Movie.Movie(1, "try movie",[con1, con2], movie_characters,"comedy")
+movie = Movie.Movie(1, "try movie", [con1, con2], movie_characters, "comedy")
 
 test = Bechdel(movie)
-print(test.second())
+test.run_bechdel_test()
 
 
 

@@ -1,10 +1,11 @@
 class Conversation:
 
-    def __init__(self, movie, character_set, lines):
+    def __init__(self, movie, character_set, lines, txt):
         self.movie = movie
         self.character_set = character_set
         self.male_characters = set()
-        self.lines = lines # one string with all lines
+        self.lines = lines
+        self.txt = txt
         for character in self.character_set:
             if character.get_gender() == "m":
                 self.male_characters.add(character)
