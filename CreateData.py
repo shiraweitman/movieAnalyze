@@ -31,10 +31,20 @@ class CreateData:
                                 r"movie-dialogs corpus\movie_characters_"
                                 r"metadata.txt")
 
+    movies_line = read_file(r"C:\Users\shira weitman\Documents\שנה "
+                            r"ב\Semester A\python\movieAnalyze\cornell"
+                            r" movie-dialogs corpus\movie_lines.txt")
+
     def split_list(self, data_list, new_list):
         for i in range(len(data_list)):
             new_item = data_list[i].split(SEPERATOR)
             new_list.append(new_item)
+
+    def create_lines(self):
+        self.split_list(self.movies_line, lines_data)
+        for line in lines_data:
+            if len(line) == 5:
+                Scene.Scene.lines_dict.update({line[0]: line[4]})
 
     def create_conversation(self):
         scenes_list = []
@@ -43,7 +53,8 @@ class CreateData:
             character_set = set()
             character_set.add(conversation[0])
             character_set.add(conversation[1])
-            scene = Scene.Scene(conversation[2], character_set, conversation[3])
+            scene = Scene.Scene(conversation[2], character_set,
+                                conversation[3], "")
             scenes_list.append(scene)
         return scenes_list
 
@@ -77,10 +88,14 @@ class CreateData:
         return movie_conversation
 
     def create_movie(self):
+        data.create_lines()
         movies_list = []
         self.split_list(self.movies_names, movie_data)
         for movie in movie_data:
             movie_conversation = self.match_conversation(movie[0])
+            for conv in movie_conversation:
+                conv.get_lines_text()
+                print(conv.text)
             movie_characters = self.match_character(movie[0])
             movie = Movie.Movie(movie[0], movie[1], movie_conversation,
                                 movie_characters, movie[5])
@@ -102,23 +117,19 @@ data = CreateData()
 movie_data = []
 conversation_data = []
 character_data = []
+lines_data = []
 
-character = Character.Character("u161", "GENERAL NORTHWOOD", "m11", "?")
-character2 = Character.Character("u159", "GENERAL NORTHWOOD", "m11", "m")
-my_set = set()
-my_set.add("u161")
-my_set.add("u159")
-movie_set = set()
-movie_set.add(character)
-movie_set.add(character2)
-scene = Scene.Scene("m11", my_set, ['L16842', 'L16843', 'L16844'])
-movie = Movie.Movie("m11", "air force one", [scene], movie_set, "action")
-
-data.create_character_obj(movie)
-for conv in movie.conversation:
-    for finals in conv.character:
-        print(finals.gender)
+# character = Character.Character("u161", "GENERAL NORTHWOOD", "m11", "?")
+# character2 = Character.Character("u159", "GENERAL NORTHWOOD", "m11", "m")
+# my_set = set()
+# my_set.add("u161")
+# my_set.add("u159")
+# movie_set = set()
+# movie_set.add(character)
+# movie_set.add(character2)
+# scene = Scene.Scene("m11", my_set, "'L16842', 'L16843', 'L16844']", "")
+# movie = Movie.Movie("m11", "air force one", [scene], movie_set, "action")
 
 
-#movies = data.create_movie()
+movies = data.create_movie()
 
