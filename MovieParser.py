@@ -1,11 +1,11 @@
 import re
-import Scene
+import conversation
 
 
 class MovieParser:
 
     Location_pattern = re.compile("^\s*(INT\.|EXT\.)")
-    Name_pattern = re.compile("                               [A-Z]{2,}")
+    Name_pattern = re.compile("(?=.*                     [A-Z][A-Z])")
     End_of_speach = re.compile("^$")
 
     def __init__ (self, path):
@@ -14,6 +14,7 @@ class MovieParser:
         self.__characters = set()
 
 
+    # def main(self):
 
 
 
@@ -21,10 +22,12 @@ class MovieParser:
         conversation = []
         speach = ""
         line = self.__file.readline()
-        while line:
+        while line: # start reading script lines
             match_name = re.search(MovieParser.Name_pattern, line)
-            if match_name:
-                conversation.append(self.get_conversation(line))
+            if match_name:  # if found character name
+                name = line.strip()
+                if(name != "CUT TO:"):
+                    conversation.append(self.get_conversation(line))
             line = self.__file.readline()
 
     def get_conversation(self, line):
@@ -33,12 +36,13 @@ class MovieParser:
         match_name = re.search(MovieParser.Name_pattern, line)
         while match_name:
             name = line.strip()
-            print(name)
+            if(name == "CUT TO"):
+                return conversation
             self.__characters.add(name)
             conversation.append(self.get_speach())
             line = self.__file.readline()
             match_name = re.search(MovieParser.Name_pattern, line)
-
+        print(conversation)
         return conversation
 
     def get_speach(self,):
@@ -54,9 +58,8 @@ class MovieParser:
 
 
 
-# movie = MovieParser("movie")
-# movie.get_scene()
-s = Scene.Scene()
+movie = MovieParser("movie")
+movie.get_scene()
 
 
 

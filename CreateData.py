@@ -2,6 +2,7 @@
 import Scene
 import Character
 import Movie
+import conversation
 
 SEPERATOR = " +++$+++ "
 
@@ -53,8 +54,8 @@ class CreateData:
             character_set = set()
             character_set.add(conversation[0])
             character_set.add(conversation[1])
-            scene = Scene.Scene(conversation[2], character_set,
-                                conversation[3], "")
+            scene = conversation.Conversation(conversation[2], character_set,
+                                   conversation[3])
             scenes_list.append(scene)
         return scenes_list
 

@@ -5,3 +5,6 @@ class Character:
         self.movie = movie
         self.gender = gender
 
+
+    def get_gender(self):
+        return self.gender
