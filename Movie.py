@@ -28,3 +28,9 @@ class Movie:
                 self.female_char.add(character)
             if character.get_gender() == "g":
                 self.male_char.add(character)
+
+    def get_females(self):
+        return self.female_char
+
+    def get_male(self):
+        return self.male_char
